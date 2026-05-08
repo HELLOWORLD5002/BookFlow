@@ -71,7 +71,7 @@ public class BookDAO {
         b.setAuthor(rs.getString("author"));
         b.setCategory(rs.getString("category"));
         b.setStock(rs.getInt("copies"));
-        b.setDamaged(rs.getBoolean("status"));
+        b.setDamaged(rs.getString("status").equals("AVAILABLE"));
         b.setPrice(0.0);
         return b;
     }
