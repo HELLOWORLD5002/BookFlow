@@ -10,7 +10,7 @@ public class BookDAO {
 
     public List<Book> getAll() {
         List<Book> list = new ArrayList<>();
-        String sql = "SELECT * FROM books ORDER BY category, name";
+        String sql = "SELECT * FROM books ORDER BY category, title";
         try (Connection c = DBConnection.getConnection(); Statement st = c.createStatement()) {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next())
@@ -22,7 +22,7 @@ public class BookDAO {
     }
 
     public Book getByBookNo(String bookNo) {
-        String sql = "SELECT * FROM books WHERE book_no = ?";
+        String sql = "SELECT * FROM books WHERE id = ?";
         try (Connection c = DBConnection.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, bookNo);
             ResultSet rs = ps.executeQuery();
@@ -35,7 +35,7 @@ public class BookDAO {
     }
 
     public boolean updateStock(String bookNo, int newStock) {
-        String sql = "UPDATE books SET stock = ? WHERE book_no = ?";
+        String sql = "UPDATE books SET stock = ? WHERE id = ?";
         try (Connection c = DBConnection.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, newStock);
             ps.setString(2, bookNo);
@@ -66,13 +66,13 @@ public class BookDAO {
     private Book mapRow(ResultSet rs) throws SQLException {
         Book b = new Book();
         b.setId(rs.getInt("id"));
-        b.setBookNo(rs.getString("book_no"));
-        b.setName(rs.getString("name"));
+        b.setBookNo(rs.getString("isbn"));
+        b.setName(rs.getString("title"));
         b.setAuthor(rs.getString("author"));
         b.setCategory(rs.getString("category"));
-        b.setStock(rs.getInt("stock"));
-        b.setDamaged(rs.getBoolean("damaged"));
-        b.setPrice(rs.getDouble("price"));
+        b.setStock(rs.getInt("copies"));
+        b.setDamaged(rs.getBoolean("status"));
+        b.setPrice(0.0);
         return b;
     }
 }
