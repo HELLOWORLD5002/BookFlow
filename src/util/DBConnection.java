@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/bookflow_db";
-    private static final String USER = "root";
+    private static final String URL = "jdbc:mysql://" + System.getenv("MYSQLHOST") + ":" + System.getenv("MYSQLPORT") + "/" + System.getenv("MYSQLDATABASE");
+    private static final String USER = System.getenv("MYSQLUSER");
     private static final String PASSWORD = "";
 
     public static Connection getConnection() throws SQLException {

@@ -47,7 +47,7 @@
                                     <input type="hidden" name="role" id="roleInput" value="student" id="roleInput">
 
                                     <div class="form-group">
-                                        <label>Student Number / Username</label>
+                                        <label><span id="loginLabel">Student Number / Username</span></label>
                                         <input type="text" name="username" placeholder="e.g. 2021-12345" required>
                                     </div>
                                     <div class="form-group">
