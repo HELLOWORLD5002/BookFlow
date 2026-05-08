@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("adminName", rs.getString("name"));
+                    session.setAttribute("adminName", rs.getString("username"));
                     session.setAttribute("role", "admin");
                     response.sendRedirect(request.getContextPath() + "/admin");
                     return;
