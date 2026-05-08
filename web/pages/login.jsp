@@ -44,7 +44,7 @@
                                         <button type="button" class="tab-btn"
                                             onclick="switchRole('admin')">Admin</button>
                                     </div>
-                                    <input type="hidden" name="role" id="roleInput" value="student" id="roleInput">
+                                    <input type="hidden" name="role" id="roleInput" value="student">
 
                                     <div class="form-group">
                                         <label><span id="loginLabel">Student Number / Username</span></label>
