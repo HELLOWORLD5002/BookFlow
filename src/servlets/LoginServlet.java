@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 
         if ("admin".equals(role)) {
             try (Connection c = DBConnection.getConnection();
-                    PreparedStatement ps = c.prepareStatement("SELECT * FROM admins WHERE name=? AND password=?")) {
+                    PreparedStatement ps = c.prepareStatement("SELECT * FROM admins WHERE username=? AND password=?")) {
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
