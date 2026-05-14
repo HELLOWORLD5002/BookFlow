@@ -3,18 +3,12 @@ import dao.BookDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.IOException;
-
 public class DeleteBookServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String adminName = (String) request.getSession().getAttribute("adminName");
-        if (adminName == null) {
-            response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
-            return;
-        }
+        if (adminName == null) { response.sendRedirect(request.getContextPath() + "/pages/login.jsp"); return; }
         int bookId = Integer.parseInt(request.getParameter("bookId"));
-        BookDAO dao = new BookDAO();
-        dao.deleteById(bookId);
+        new BookDAO().deleteById(bookId);
         response.sendRedirect(request.getContextPath() + "/admin");
     }
 }
