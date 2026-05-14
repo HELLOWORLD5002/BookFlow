@@ -267,8 +267,8 @@
                                                                                             method="post"
                                                                                             style="display:inline">
                                                                                             <input type="hidden"
-                                                                                                name="bookNo"
-                                                                                                value="<%= b.getBookNo() %>">
+                                                                                                name="bookId"
+                                                                                                value="<%= b.getId() %>">
                                                                                             <button type="submit"
                                                                                                 class="btn-sm-green">Borrow</button>
                                                                                         </form>
