@@ -234,7 +234,7 @@
                                                                         <th>Author</th>
                                                                         <th>Category</th>
                                                                         <th>Stock</th>
-                                                                        <th>Price</th>
+                                                                        
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
@@ -242,7 +242,7 @@
                                                                     <% for (models.Book b : allBooks) { %>
                                                                         <tr>
                                                                             <td>
-                                                                                <%= b.getBookNo() %>
+                                                                                <%= b.getId() %>
                                                                             </td>
                                                                             <td>
                                                                                 <%= b.getName() %>
