@@ -555,7 +555,7 @@
                                                                                         <tr>
                                                                                             <td><span
                                                                                                     class="badge navy">
-                                                                                                    <%= b.getBookNo() %>
+                                                                                                    <%= String.valueOf(b.getId()) %>
                                                                                                 </span></td>
                                                                                             <td><strong>
                                                                                                     <%= b.getName() %>
