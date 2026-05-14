@@ -21,7 +21,7 @@ public class BookDAO {
         return list;
     }
 
-    public Book getByBookNo(String bookNo) {
+    public Book getById(int id) { String sql2 = "SELECT * FROM books WHERE id = ?"; try (Connection c2 = DBConnection.getConnection(); PreparedStatement ps2 = c2.prepareStatement(sql2)) { ps2.setInt(1, id); ResultSet rs2 = ps2.executeQuery(); if (rs2.next()) return mapRow(rs2); } catch (SQLException e) { e.printStackTrace(); } return null; } public Book getByBookNo(String bookNo) {
         String sql = "SELECT * FROM books WHERE id = ?";
         try (Connection c = DBConnection.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, bookNo);
@@ -71,7 +71,7 @@ public class BookDAO {
         b.setAuthor(rs.getString("author"));
         b.setCategory(rs.getString("category"));
         b.setStock(rs.getInt("copies"));
-        b.setDamaged(rs.getString("status").equals("AVAILABLE"));
+        b.setDamaged("AVAILABLE".equals(rs.getString("status")));
         b.setPrice(0.0);
         return b;
     }

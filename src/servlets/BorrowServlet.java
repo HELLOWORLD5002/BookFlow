@@ -21,7 +21,7 @@ public class BorrowServlet extends HttpServlet {
             return;
         }
 
-        String bookNo = request.getParameter("bookNo");
+        String bookNo = request.getParameter("bookId");
         TransactionDAO txDAO = new TransactionDAO();
         BookDAO bookDAO = new BookDAO();
 
@@ -36,7 +36,7 @@ public class BorrowServlet extends HttpServlet {
             return;
         }
 
-        Book book = bookDAO.getByBookNo(bookNo);
+        Book book = bookDAO.getById(Integer.parseInt(bookNo));
         if (book == null || book.getStock() <= 0) {
             response.sendRedirect(request.getContextPath() + "/student?error=unavailable");
             return;
