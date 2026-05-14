@@ -84,7 +84,7 @@ public class Student {
         this.password = password;
     }
 
-    public int getWarningCount() {
+    public String getWarningLabel() { switch(warningCount) { case 1: return "1st Warning"; case 2: return "2nd Warning"; case 3: return "3rd Warning"; case 4: return "CRITICAL"; default: return "None"; } } public int getWarningCount() {
         return warningCount;
     }
 

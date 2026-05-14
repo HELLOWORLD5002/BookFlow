@@ -546,7 +546,7 @@
                                                                                         <th>Author</th>
                                                                                         <th>Category</th>
                                                                                         <th>Stock</th>
-                                                                                        <th>Price</th>
+                                                                                        
                                                                                         <th>Status</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -598,7 +598,7 @@
                                                                                                 <th>Student No.</th>
                                                                                                 <th>Email</th>
                                                                                                 <th>Program</th>
-                                                                                                <th>Warning</th>
+                                                                                                <th>Warning</th><th>Action</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody>
