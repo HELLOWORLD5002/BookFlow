@@ -47,12 +47,12 @@ public class BookDAO {
     }
 
     public boolean insert(Book b) {
-        String sql = "INSERT INTO books (book_no, name, author, category, stock, damaged, price) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO books (title, author, category, status, copies) VALUES (?,?,?,?,?)";
         try (Connection c = DBConnection.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setString(1, b.getBookNo());
-            ps.setString(2, b.getName());
-            ps.setString(3, b.getAuthor());
-            ps.setString(4, b.getCategory());
+            ps.setString(1, b.getName());
+            ps.setString(2, b.getAuthor());
+            ps.setString(3, b.getCategory());
+            ps.setString(4, "AVAILABLE");
             ps.setInt(5, b.getStock());
             ps.setBoolean(6, b.isDamaged());
             ps.setDouble(7, b.getPrice());
