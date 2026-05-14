@@ -63,7 +63,7 @@ public class BookDAO {
         return false;
     }
 
-    private Book mapRow(ResultSet rs) throws SQLException {
+    public boolean deleteById(int id) { String sql = "DELETE FROM books WHERE id = ?"; try (Connection c = DBConnection.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) { ps.setInt(1, id); return ps.executeUpdate() > 0; } catch (SQLException e) { e.printStackTrace(); } return false; } private Book mapRow(ResultSet rs) throws SQLException {
         Book b = new Book();
         b.setId(rs.getInt("id"));
         b.setBookNo(rs.getString("isbn"));

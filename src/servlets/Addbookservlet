@@ -1,0 +1,34 @@
+package servlets;
+import dao.BookDAO;
+import models.Book;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import java.io.IOException;
+
+public class AddBookServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String adminName = (String) request.getSession().getAttribute("adminName");
+        if (adminName == null) {
+            response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
+            return;
+        }
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String category = request.getParameter("category");
+        int copies = 1;
+        try { copies = Integer.parseInt(request.getParameter("copies")); } catch (Exception e) {}
+
+        Book b = new Book();
+        b.setName(title);
+        b.setAuthor(author);
+        b.setCategory(category);
+        b.setStock(copies);
+        b.setDamaged(false);
+        b.setPrice(0.0);
+
+        BookDAO dao = new BookDAO();
+        dao.insert(b);
+        response.sendRedirect(request.getContextPath() + "/admin");
+    }
+}

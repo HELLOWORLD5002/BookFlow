@@ -558,7 +558,7 @@
                                                                                                     <%= String.valueOf(b.getId()) %>
                                                                                                 </span></td>
                                                                                             <td><strong>
-                                                                                                    <%= b.getName() %>
+                                                                                                    <%= b.getTitle() %>
                                                                                                 </strong></td>
                                                                                             <td>
                                                                                                 <%= b.getAuthor() %>
