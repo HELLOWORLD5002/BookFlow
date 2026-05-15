@@ -1,5 +1,5 @@
 ﻿@"
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ page import="java.util.List, models.*, java.time.LocalDate" %>
         <% String adminName=(String) session.getAttribute("adminName"); if (adminName==null) {
             response.sendRedirect(request.getContextPath() + "/login" ); return; } List<models.Transaction> transactions
@@ -686,14 +686,14 @@
                                                                                                         </td>
                                                                                                         <td>
                                                                                                             <%= p.getDateRecorded()
-                                                                                                                %>
+
                                                                                                         </td>
 
 
                                                                                                                 <%= p.isSettled() ? "Paid" : "Unpaid" %>
                                                                                                             </span></td>
                                                                                                             <td><% if(!p.isSettled()){ %><form action="<%= request.getContextPath() %>/settle" method="POST" style="display:inline;"><input type="hidden" name="penaltyId" value="<%= p.getId() %>"><button type="submit" style="background:#2E7D32;color:white;border:none;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:12px;">Settle</button></form><% } %></td>
-                                                                                                                    %>
+
                                                                                                             </span>
                                                                                                         </td>
                                                                                                     </tr>
@@ -721,4 +721,5 @@
                                                         </body>
 
                                                         </html>
+
 
