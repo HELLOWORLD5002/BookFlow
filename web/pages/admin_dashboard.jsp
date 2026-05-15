@@ -1,5 +1,5 @@
 ﻿@"
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*,models.*,dao.*" %>
     <%@ page import="java.util.List, models.*, java.time.LocalDate" %>
         <% String adminName=(String) session.getAttribute("adminName"); if (adminName==null) {
             response.sendRedirect(request.getContextPath() + "/login" ); return; } List<models.Transaction> transactions
