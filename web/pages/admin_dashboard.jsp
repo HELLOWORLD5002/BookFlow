@@ -488,7 +488,7 @@
                                                                                                 <th>Book</th>
                                                                                                 <th>Borrowed</th>
                                                                                                 <th>Due Date</th>
-                                                                                                <th>Status</th>
+                                                                                                <th>Status</th><th>Action</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody>
@@ -536,7 +536,7 @@
                                                                     <div id="panel-books" class="panel">
                                                                         <div class="table-card">
                                                                             <div class="table-header">
-                                                                                <h3>📚 Book Inventory</h3>
+                                                                                <h3>?? Book Inventory</h3></div><div style="padding:16px;background:#f0f4f0;border-radius:8px;margin:16px 16px 0 16px"><form method="post" action="<%= request.getContextPath() %>/addbook" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><input name="title" placeholder="Title*" required style="padding:8px;border:1px solid #ccc;border-radius:4px;flex:1;min-width:120px"><input name="author" placeholder="Author*" required style="padding:8px;border:1px solid #ccc;border-radius:4px;flex:1;min-width:120px"><select name="category" style="padding:8px;border:1px solid #ccc;border-radius:4px"><option>Engineering</option><option>Science</option><option>Mathematics</option><option>Fiction</option><option>Programming</option><option>Database</option><option>Networking</option><option>Technology</option><option>Economics</option><option>Systems</option></select><input name="copies" type="number" value="1" min="1" style="padding:8px;border:1px solid #ccc;border-radius:4px;width:70px"><button type="submit" style="padding:8px 16px;background:#2E7D32;color:white;border:none;border-radius:4px;cursor:pointer">Add Book</button></form>
                                                                             </div>
                                                                             <table>
                                                                                 <thead>
@@ -547,7 +547,7 @@
                                                                                         <th>Category</th>
                                                                                         <th>Stock</th>
                                                                                         
-                                                                                        <th>Status</th>
+                                                                                        <th>Status</th><th>Action</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -573,7 +573,7 @@
                                                                                                     b.getPrice()) %>
                                                                                             </td>
                                                                                             <td><span class="badge">
-                                                                                                    <%= b.getStatus() %>
+                                                                                                    <%= b.getStatus() %></span></td><td><form method="post" action="<%= request.getContextPath() %>/deletebook"><input type="hidden" name="bookId" value="<%= b.getId() %>"><button type="submit" style="background:#c0392b;color:white;border:none;padding:4px 10px;border-radius:4px;cursor:pointer;">Delete</button></form>
                                                                                                 </span></td>
                                                                                         </tr>
                                                                                         <% } %>
@@ -652,7 +652,7 @@
                                                                                                 <th>Type</th>
                                                                                                 <th>Amount</th>
                                                                                                 <th>Date</th>
-                                                                                                <th>Status</th>
+                                                                                                <th>Status</th><th>Action</th>
                                                                                             </tr>
                                                                                         </thead>
                                                                                         <tbody>
