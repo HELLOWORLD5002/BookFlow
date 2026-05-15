@@ -27,7 +27,7 @@ public class AdminDashboardServlet extends HttpServlet {
         int overdue = 0;
         for (Object o : tx2) { models.Transaction t = (models.Transaction)o; if (!t.isReturned() && t.getExpectedReturn() != null && t.getExpectedReturn().isBefore(java.time.LocalDate.now())) overdue++; }
         request.setAttribute("overdueCount", overdue);
-        request.setAttribute("unpaidTotal", 0.0);
+        double unpaid = penaltyDAO.getAll().stream().filter(p -> !((models.Penalty)p).isSettled()).mapToDouble(p -> ((models.Penalty)p).getAmount()).sum(); request.setAttribute("unpaidTotal", unpaid);
         request.getRequestDispatcher("/pages/admin_dashboard.jsp").forward(request, response);
     }
 }
