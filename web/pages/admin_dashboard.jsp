@@ -685,9 +685,9 @@
                                                                                                             </strong>
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            <%= p.getDateRecorded()
-
+                                                                                                            <%= p.getDateRecorded() %>
                                                                                                         </td>
+
 
 
                                                                                                                 <%= p.isSettled() ? "Paid" : "Unpaid" %>
