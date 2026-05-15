@@ -1,4 +1,4 @@
-@"
+﻿@"
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ page import="java.util.List, models.*, java.time.LocalDate" %>
         <% String adminName=(String) session.getAttribute("adminName"); if (adminName==null) {
@@ -394,26 +394,26 @@
                                                                 </div>
                                                                 <div class="sidebar-user">
                                                                     <div class="role">Admin Panel</div>
-                                                                    <div class="name">👤 <%= adminName %>
+                                                                    <div class="name">ðŸ‘¤ <%= adminName %>
                                                                     </div>
                                                                 </div>
                                                                 <nav class="sidebar-nav">
                                                                     <a class="nav-item active"
-                                                                        onclick="showTab('transactions')"><span>📋</span>
+                                                                        onclick="showTab('transactions')"><span>ðŸ“‹</span>
                                                                         Transactions</a>
                                                                     <a class="nav-item"
-                                                                        onclick="showTab('books')"><span>📚</span>
+                                                                        onclick="showTab('books')"><span>ðŸ“š</span>
                                                                         Books</a>
                                                                     <a class="nav-item"
-                                                                        onclick="showTab('students')"><span>👥</span>
+                                                                        onclick="showTab('students')"><span>ðŸ‘¥</span>
                                                                         Students</a>
                                                                     <a class="nav-item"
-                                                                        onclick="showTab('penalties')"><span>💰</span>
+                                                                        onclick="showTab('penalties')"><span>ðŸ’°</span>
                                                                         Penalties</a>
                                                                 </nav>
                                                                 <div class="sidebar-logout">
                                                                     <a href="<%= request.getContextPath() %>/logout"
-                                                                        class="logout-btn">🚪 Logout</a>
+                                                                        class="logout-btn">ðŸšª Logout</a>
                                                                 </div>
                                                             </aside>
                                                             <div class="main">
@@ -450,7 +450,7 @@
                                                                         </div>
                                                                         <div class="stat-card orange">
                                                                             <div class="stat-label">Unpaid Fines</div>
-                                                                            <div class="stat-value">₱<%=
+                                                                            <div class="stat-value">â‚±<%=
                                                                                     String.format("%.0f", unpaidTotal)
                                                                                     %>
                                                                             </div>
@@ -460,15 +460,15 @@
                                                                     </div>
                                                                     <div class="tab-bar">
                                                                         <button class="tab active"
-                                                                            onclick="showTab('transactions')">📋
+                                                                            onclick="showTab('transactions')">ðŸ“‹
                                                                             Transactions</button>
                                                                         <button class="tab"
-                                                                            onclick="showTab('books')">📚 Books</button>
+                                                                            onclick="showTab('books')">ðŸ“š Books</button>
                                                                         <button class="tab"
-                                                                            onclick="showTab('students')">👥
+                                                                            onclick="showTab('students')">ðŸ‘¥
                                                                             Students</button>
                                                                         <button class="tab"
-                                                                            onclick="showTab('penalties')">💰
+                                                                            onclick="showTab('penalties')">ðŸ’°
                                                                             Penalties</button>
                                                                     </div>
 
@@ -570,7 +570,7 @@
                                                                                             <td>
                                                                                                 <%= b.getStock() %>
                                                                                             </td>
-                                                                                            <td>₱<%= String.format("%.2f",
+                                                                                            <td>â‚±<%= String.format("%.2f",
                                                                                                     b.getPrice()) %>
                                                                                             </td>
                                                                                             <td><span class="badge">
@@ -586,7 +586,7 @@
                                                                     <div id="panel-students" class="panel">
                                                                         <div class="table-card">
                                                                             <div class="table-header">
-                                                                                <h3>👥 Registered Students</h3>
+                                                                                <h3>ðŸ‘¥ Registered Students</h3>
                                                                             </div>
                                                                             <% if (students.isEmpty()) { %>
                                                                                 <div class="empty-msg">No students
@@ -639,7 +639,7 @@
                                                                     <div id="panel-penalties" class="panel">
                                                                         <div class="table-card">
                                                                             <div class="table-header">
-                                                                                <h3>💰 Penalties</h3>
+                                                                                <h3>ðŸ’° Penalties</h3>
                                                                             </div>
                                                                             <% if (penalties.isEmpty()) { %>
                                                                                 <div class="empty-msg">No penalties
@@ -678,7 +678,7 @@
                                                                                                                 <%= p.getReason()
                                                                                                                     %>
                                                                                                             </span></td>
-                                                                                                        <td><strong>₱<%=
+                                                                                                        <td><strong>â‚±<%=
                                                                                                                     String.format("%.2f",
                                                                                                                     p.getAmount())
                                                                                                                     %>
