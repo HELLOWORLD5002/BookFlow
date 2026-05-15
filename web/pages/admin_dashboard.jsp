@@ -30,7 +30,7 @@
 <title>BookFlow Admin</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--navy:#122146;--sidebar:#0c1837;--green:#2E7D32;--sidebar-w:220px;}
+:root{--navy:#122146;--sidebar:#0c1837;--sidebar-w:220px;}
 body{font-family:'Segoe UI',sans-serif;background:#f4f6f8;display:flex;min-height:100vh;}
 .sidebar{width:var(--sidebar-w);background:var(--sidebar);color:white;display:flex;flex-direction:column;position:fixed;height:100vh;}
 .sidebar-brand{padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.1);}
@@ -76,7 +76,7 @@ tr.row-gray td{background:#f9f9f9;color:#aaa;}
 .add-form{background:#f9f9f9;border-radius:8px;padding:16px;margin-bottom:20px;display:none;}
 .add-form.open{display:block;}
 .form-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;}
-.form-row input,.form-row select{padding:8px 10px;border:1px solid #ddd;border-radius:4px;font-size:13px;width:100%;}
+.form-row input{padding:8px 10px;border:1px solid #ddd;border-radius:4px;font-size:13px;width:100%;}
 .empty-msg{color:#aaa;text-align:center;padding:40px;font-size:14px;}
 </style>
 </head>
@@ -117,15 +117,18 @@ tr.row-gray td{background:#f9f9f9;color:#aaa;}
       <div class="panel-header"><h3>All Transactions</h3></div>
       <% if (transactions.isEmpty()) { %><div class="empty-msg">No transactions yet.</div><% } else { %>
       <table><thead><tr><th>Student</th><th>Book</th><th>Borrowed</th><th>Due Date</th><th>Status</th><th>Action</th></tr></thead><tbody>
-      <% for (models.Transaction t : transactions) { String tClass = "OVERDUE".equals(t.getStatus()) ? "row-red" : ("RETURNED".equals(t.getStatus()) ? "row-gray" : ""); %>
+      <% for (models.Transaction t : transactions) {
+         String tStatus = t.getStatusLabel();
+         String tClass = "OVERDUE".equals(tStatus) ? "row-red" : (t.isReturned() ? "row-gray" : "");
+      %>
       <tr class="<%= tClass %>">
         <td><strong><%= t.getStudentName() %></strong><br><small><%= t.getStudentNumber() %></small></td>
         <td><%= t.getBookName() %></td>
         <td><%= t.getBorrowDate() %></td>
-        <td><%= t.getDueDate() %></td>
-        <td><span class="badge <%= "OVERDUE".equals(t.getStatus()) ? "badge-red" : ("RETURNED".equals(t.getStatus()) ? "badge-navy" : "badge-green") %>"><%= t.getStatus() %></span></td>
+        <td><%= t.getExpectedReturn() %></td>
+        <td><span class="badge <%= "OVERDUE".equals(tStatus) ? "badge-red" : (t.isReturned() ? "badge-navy" : "badge-green") %>"><%= tStatus %></span></td>
         <td>
-        <% if (!"RETURNED".equals(t.getStatus())) { %>
+        <% if (!t.isReturned()) { %>
           <form action="<%= request.getContextPath() %>/adminreturn" method="POST" style="display:inline;"><input type="hidden" name="transactionId" value="<%= t.getId() %>"><button type="submit" class="btn btn-blue">Return</button></form>
           <form action="<%= request.getContextPath() %>/adminreturn" method="POST" style="display:inline;"><input type="hidden" name="transactionId" value="<%= t.getId() %>"><input type="hidden" name="damaged" value="true"><button type="submit" class="btn btn-orange">Damaged</button></form>
           <form action="<%= request.getContextPath() %>/adminreturn" method="POST" style="display:inline;"><input type="hidden" name="transactionId" value="<%= t.getId() %>"><input type="hidden" name="lost" value="true"><button type="submit" class="btn btn-red">Lost</button></form>
@@ -144,9 +147,12 @@ tr.row-gray td{background:#f9f9f9;color:#aaa;}
         </form>
       </div>
       <% if (books.isEmpty()) { %><div class="empty-msg">No books found.</div><% } else { %>
-      <table><thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Status</th><th>Copies</th><th>Action</th></tr></thead><tbody>
+      <table><thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Status</th><th>Stock</th><th>Action</th></tr></thead><tbody>
       <% for (models.Book b : books) { %>
-      <tr><td><%= b.getTitle() %></td><td><%= b.getAuthor() %></td><td><%= b.getCategory() %></td><td><span class="badge badge-navy"><%= b.getStatus() %></span></td><td><%= b.getCopies() %></td>
+      <tr>
+        <td><%= b.getTitle() %></td><td><%= b.getAuthor() %></td><td><%= b.getCategory() %></td>
+        <td><span class="badge badge-navy"><%= b.getStatus() %></span></td>
+        <td><%= b.getStock() %></td>
         <td><form action="<%= request.getContextPath() %>/deletebook" method="POST" style="display:inline;"><input type="hidden" name="bookId" value="<%= b.getId() %>"><button type="submit" class="btn btn-red" onclick="return confirm('Delete this book?')">Delete</button></form></td>
       </tr>
       <% } %></tbody></table><% } %>
@@ -155,22 +161,26 @@ tr.row-gray td{background:#f9f9f9;color:#aaa;}
       <div class="panel-header"><h3>&#128101; Registered Students</h3></div>
       <% if (students.isEmpty()) { %><div class="empty-msg">No students registered.</div><% } else { %>
       <table><thead><tr><th>Name</th><th>Student No.</th><th>Email</th><th>Program</th><th>Warning</th><th>Action</th></tr></thead><tbody>
-      <% for (models.Student s : students) { %>
+      <% for (models.Student s : students) { int wl = s.getWarningCount(); %>
       <tr>
-        <td><strong><%= s.getFullName() %></strong></td><td><%= s.getStudentNumber() %></td><td><%= s.getEmail() %></td><td><%= s.getProgram() %></td>
-        <td><span class="badge <%= s.getWarningLevel() >= 3 ? "badge-red" : (s.getWarningLevel() > 0 ? "badge-orange" : "badge-green") %>"><% if(s.getWarningLevel()==0){%>None<%}else if(s.getWarningLevel()==1){%>1st Warning<%}else if(s.getWarningLevel()==2){%>2nd Warning<%}else if(s.getWarningLevel()==3){%>3rd Warning<%}else{%>BLOCKED<%}%></span></td>
-        <td><% if(s.getWarningLevel()>0){%><form action="<%= request.getContextPath() %>/clearwarning" method="POST" style="display:inline;"><input type="hidden" name="studentId" value="<%= s.getId() %>"><button type="submit" class="btn btn-blue">Clear Warning</button></form><%}%></td>
+        <td><strong><%= s.getName() %></strong></td>
+        <td><%= s.getStudentNumber() %></td>
+        <td><%= s.getEmail() %></td>
+        <td><%= s.getProgram() %></td>
+        <td><span class="badge <%= wl >= 3 ? "badge-red" : (wl > 0 ? "badge-orange" : "badge-green") %>"><%= s.getWarningLabel() %></span></td>
+        <td><% if(wl>0){%><form action="<%= request.getContextPath() %>/clearwarning" method="POST" style="display:inline;"><input type="hidden" name="studentId" value="<%= s.getId() %>"><button type="submit" class="btn btn-blue">Clear Warning</button></form><%}%></td>
       </tr>
       <% } %></tbody></table><% } %>
     </div>
     <div id="panel-penalties" class="panel">
       <div class="panel-header"><h3>&#128176; Penalties</h3></div>
       <% if (penalties.isEmpty()) { %><div class="empty-msg">No penalties recorded.</div><% } else { %>
-      <table><thead><tr><th>Student</th><th>Book</th><th>Type</th><th>Amount</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>
+      <table><thead><tr><th>Student</th><th>Book</th><th>Reason</th><th>Amount</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>
       <% for (models.Penalty p : penalties) { %>
       <tr class="<%= p.isSettled() ? "row-gray" : "row-red" %>">
-        <td><strong><%= p.getStudentName() %></strong></td><td><%= p.getBookName() %></td>
-        <td><span class="badge badge-orange"><%= p.getType() %></span></td>
+        <td><strong><%= p.getStudentName() %></strong></td>
+        <td><%= p.getBookName() %></td>
+        <td><span class="badge badge-orange"><%= p.getReason() %></span></td>
         <td>&#8369;<%= String.format("%.2f", p.getAmount()) %></td>
         <td><%= p.getDateRecorded() %></td>
         <td><span class="badge <%= p.isSettled() ? "badge-green" : "badge-red" %>"><%= p.isSettled() ? "Paid" : "Unpaid" %></span></td>
