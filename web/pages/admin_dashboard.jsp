@@ -688,8 +688,8 @@
                                                                                                             <%= p.getDateRecorded()
                                                                                                                 %>
                                                                                                         </td>
-                                                                                                        <td><span
-                                                                                                                class="badge">
+
+
                                                                                                                 <%= p.isSettled() ? "Paid" : "Unpaid" %>
                                                                                                             </span></td>
                                                                                                             <td><% if(!p.isSettled()){ %><form action="<%= request.getContextPath() %>/settle" method="POST" style="display:inline;"><input type="hidden" name="penaltyId" value="<%= p.getId() %>"><button type="submit" style="background:#2E7D32;color:white;border:none;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:12px;">Settle</button></form><% } %></td>
