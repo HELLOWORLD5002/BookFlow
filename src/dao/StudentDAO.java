@@ -86,4 +86,11 @@ public class StudentDAO {
         s.setWarningCount(rs.getInt("warning_level"));
         return s;
     }
+
+    public void deleteStudent(int id) {
+        String sql = "DELETE FROM students WHERE id = ?";
+        try (java.sql.Connection conn = util.DBConnection.getConnection(); java.sql.PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id); ps.executeUpdate();
+        } catch (Exception e) { e.printStackTrace(); }
+    }
 }
