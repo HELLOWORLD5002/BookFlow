@@ -66,13 +66,13 @@ public class BookDAO {
     public boolean deleteById(int id) { String sql = "DELETE FROM books WHERE id = ?"; try (Connection c = DBConnection.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) { ps.setInt(1, id); return ps.executeUpdate() > 0; } catch (SQLException e) { e.printStackTrace(); } return false; } private Book mapRow(ResultSet rs) throws SQLException {
         Book b = new Book();
         b.setId(rs.getInt("id"));
-        b.setBookNo(rs.getString("isbn"));
+        b.setBookNo(rs.getString("book_no"));
         b.setName(rs.getString("title"));
         b.setAuthor(rs.getString("author"));
         b.setCategory(rs.getString("category"));
         b.setStock(rs.getInt("copies"));
         b.setDamaged(!"AVAILABLE".equals(rs.getString("status")));
-        b.setPrice(0.0);
+        b.setPrice(rs.getDouble("price"));
         return b;
     }
 }
