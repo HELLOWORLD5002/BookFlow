@@ -83,7 +83,7 @@ public class StudentDAO {
         s.setEmail(rs.getString("email"));
         s.setProgram(rs.getString("program"));
         s.setPassword(rs.getString("password"));
-        s.setWarningCount(rs.getInt("warning_level"));
+        s.setWarningCount(rs.getInt("warning_level")); s.setAccountStatus(rs.getString("account_status") != null ? rs.getString("account_status") : "ACTIVE");
         return s;
     }
 
