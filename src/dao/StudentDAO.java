@@ -93,4 +93,11 @@ public class StudentDAO {
             ps.setInt(1, id); ps.executeUpdate();
         } catch (Exception e) { e.printStackTrace(); }
     }
+
+    public void updateStudentStatus(int id, String status) {
+        String sql = "UPDATE students SET account_status = ? WHERE id = ?";
+        try (java.sql.Connection conn = util.DBConnection.getConnection(); java.sql.PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, status); ps.setInt(2, id); ps.executeUpdate();
+        } catch (Exception e) { e.printStackTrace(); }
+    }
 }

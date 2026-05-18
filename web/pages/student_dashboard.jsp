@@ -115,7 +115,7 @@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
+                                                                <tbody id="bookTable">
                                                                     <% boolean hasActive=false; for (models.Transaction
                                                                         t : myTransactions) { if (t.isReturned())
                                                                         continue; hasActive=true; %>
@@ -179,7 +179,7 @@
                                                                         <th>Status</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
+                                                                <tbody id="bookTable">
                                                                     <% if (myPenalties.isEmpty()) { %>
                                                                         <tr>
                                                                             <td colspan="5" class="empty-row">No
@@ -238,7 +238,7 @@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
+                                                                <tbody id="bookTable">
                                                                     <% for (models.Book b : allBooks) { %>
                                                                         <tr>
                                                                             <td>
@@ -298,6 +298,6 @@
                                                         el.classList.add('active');
                                                     }
                                                 </script>
-                                            </body>
+                                            <script>function filterBooks(){var search=document.getElementById("searchInput").value.toLowerCase();var cat=document.getElementById("categoryFilter").value.toLowerCase();var rows=document.querySelectorAll("#bookTable tr");rows.forEach(function(row){var title=row.cells[1]?row.cells[1].textContent.toLowerCase():"";var author=row.cells[2]?row.cells[2].textContent.toLowerCase():"";var category=row.cells[3]?row.cells[3].textContent.toLowerCase():"";var matchSearch=title.includes(search)||author.includes(search);var matchCat=cat===""||category.includes(cat);row.style.display=matchSearch&&matchCat?"":"none";});}</script></body>
 
                                             </html>

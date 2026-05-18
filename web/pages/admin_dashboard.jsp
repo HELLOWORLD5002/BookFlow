@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List, models.*, java.time.LocalDate" %>
 <%
     String adminName = (String) session.getAttribute("adminName");
@@ -160,15 +160,15 @@ tr.row-gray td{background:#f9f9f9;color:#aaa;}
     <div id="panel-students" class="panel">
       <div class="panel-header"><h3>&#128101; Registered Students</h3></div>
       <% if (students.isEmpty()) { %><div class="empty-msg">No students registered.</div><% } else { %>
-      <table><thead><tr><th>Name</th><th>Student No.</th><th>Email</th><th>Program</th><th>Warning</th><th>Action</th></tr></thead><tbody>
+      <table><thead><tr><th>Name</th><th>Student No.</th><th>Email</th><th>Program</th><th>Status</th><th>Warning</th><th>Action</th></tr></thead><tbody>
       <% for (models.Student s : students) { int wl = s.getWarningCount(); %>
       <tr>
         <td><strong><%= s.getName() %></strong></td>
         <td><%= s.getStudentNumber() %></td>
         <td><%= s.getEmail() %></td>
-        <td><%= s.getProgram() %></td>
+        <td><%= s.getProgram() %></td><td><span class="badge <%= `"ACTIVE`".equals(s.getAccountStatus()) ? `"badge-green`" : `"badge-red`" %>"><%= s.getAccountStatus() %></span></td>
         <td><span class="badge <%= wl >= 3 ? "badge-red" : (wl > 0 ? "badge-orange" : "badge-green") %>"><%= s.getWarningLabel() %></span></td>
-        <td><% if(wl>0){%><form action="<%= request.getContextPath() %>/clearwarning" method="POST" style="display:inline;"><input type="hidden" name="studentId" value="<%= s.getId() %>"><button type="submit" class="btn btn-blue">Clear Warning</button></form><%}%> <form action="<%= request.getContextPath() %>/deletestudent" method="POST" style="display:inline;"><input type="hidden" name="studentId" value="<%= s.getId() %>"><button type="submit" class="btn btn-red">Delete</button></form></td>
+        <td><% if(wl>0){%><form action="<%= request.getContextPath() %>/clearwarning" method="POST" style="display:inline;"><input type="hidden" name="studentId" value="<%= s.getId() %>"><button type="submit" class="btn btn-blue">Clear Warning</button></form><%}%> <form action="<%= request.getContextPath() %>/togglestatus" method="POST" style="display:inline;"><input type="hidden" name="studentId" value="<%= s.getId() %>"><input type="hidden" name="currentStatus" value="<%= s.getAccountStatus() %>"><button type="submit" class="btn <%= `"ACTIVE`".equals(s.getAccountStatus()) ? `"btn-orange`" : `"btn-green`" %>"><%= `"ACTIVE`".equals(s.getAccountStatus()) ? `"Deactivate`" : `"Activate`" %></button></form> <form action="<%= request.getContextPath() %>/deletestudent" method="POST" style="display:inline;"><input type="hidden" name="studentId" value="<%= s.getId() %>"><button type="submit" class="btn btn-red">Delete</button></form></td>
       </tr>
       <% } %></tbody></table><% } %>
     </div>
