@@ -61,7 +61,7 @@
                                                             currentStudent.getWarningCount()> 0) { %>
                                                             <div class="alert alert-warning">
                                                                 Warning Level: <strong>
-                                                                    <%= currentStudent.warningLabel() %>
+                                                                    <%= currentStudent.getWarningLabel() %>
                                                                 </strong>
                                                                 <% if (currentStudent.isCriticalBlocked()) { %> -- Your
                                                                     account is BLOCKED. Contact admin.<% } %>
