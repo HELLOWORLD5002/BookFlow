@@ -10,7 +10,7 @@ public class BookDAO {
 
     public List<Book> getAll() {
         List<Book> list = new ArrayList<>();
-        String sql = "SELECT * FROM books ORDER BY category, title";
+        String sql = "SELECT * FROM books ORDER BY book_no";
         try (Connection c = DBConnection.getConnection(); Statement st = c.createStatement()) {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next())

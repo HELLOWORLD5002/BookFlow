@@ -240,9 +240,9 @@
                                                                 </thead>
                                                                 <tbody id="bookTable">
                                                                     <% for (models.Book b : allBooks) { %>
-                                                                        <tr>
+                                                                            <td>
                                                                                 <%= b.getBookNo() %>
-                                                                                <%= b.getId() %>
+                                                                            </td>
                                                                             </td>
                                                                             <td>
                                                                                 <%= b.getName() %>
