@@ -249,8 +249,8 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody id="bookTable">
-                                                                    <tr>
-                                                                            <td>
+                                                                    <% for (models.Book b : allBooks) { %>
+                                                                        <tr>
                                                                                 <%= b.getBookNo() %>
                                                                             </td>
 
