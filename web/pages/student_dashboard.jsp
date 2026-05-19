@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ page import="java.util.List, models.*" %>
         <% String studentName=(String) session.getAttribute("studentName"); String studentNumber=(String)
             session.getAttribute("studentNumber"); if (studentName==null) {
@@ -139,17 +139,17 @@
                                                                             <td>&#8369;<%= String.format("%.2f",
                                                                                     t.computeOverdueFine()) %>
                                                                             </td>
-                                                                            <td>
-                                                                                <form
-                                                                                    action="<%= request.getContextPath() %>/return"
-                                                                                    method="post"
-                                                                                    style="display:inline">
-                                                                                    <input type="hidden"
-                                                                                        name="transactionId"
-                                                                                        value="<%= t.getId() %>">
-                                                                                    <button type="submit"
-                                                                                        class="btn-sm-green">Return</button>
-                                                                                </form>
+
+
+
+
+
+
+
+
+
+
+
                                                                             </td>
                                                                         </tr>
                                                                         <% } %>

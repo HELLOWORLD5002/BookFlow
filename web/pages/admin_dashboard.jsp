@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List, models.*, java.time.LocalDate" %>
 <%
     String adminName = (String) session.getAttribute("adminName");
@@ -150,9 +150,9 @@ tr.row-gray td{background:#f9f9f9;color:#aaa;}
       <table><thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Status</th><th>Stock</th><th>Action</th></tr></thead><tbody>
       <% for (models.Book b : books) { %>
       <tr>
-        <td><%= b.getTitle() %></td><td><%= b.getAuthor() %></td><td><%= b.getCategory() %></td>
+        <td><%= b.getBookNo() %></td><td><%= b.getTitle() %></td><td><%= b.getAuthor() %></td><td><%= b.getCategory() %></td>
         <td><span class="badge badge-navy"><%= b.getStatus() %></span></td>
-        <td><%= b.getStock() %></td>
+        <td><%= b.getStock() %></td><td>&#8369;<%= String.format("%.2f", b.getPrice()) %></td>
         <td><form action="<%= request.getContextPath() %>/deletebook" method="POST" style="display:inline;"><input type="hidden" name="bookId" value="<%= b.getId() %>"><button type="submit" class="btn btn-red" onclick="return confirm('Delete this book?')">Delete</button></form></td>
       </tr>
       <% } %></tbody></table><% } %>
