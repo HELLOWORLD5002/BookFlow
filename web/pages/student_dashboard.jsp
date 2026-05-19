@@ -251,8 +251,8 @@
                                                                 <tbody id="bookTable">
                                                                     <% for (models.Book b : allBooks) { %>
                                                                         <tr>
-                                                                                <%= b.getBookNo() %>
-                                                                            </td>
+                                                                            <td><%= b.getBookNo() %></td>
+
 
                                                                             <td>
                                                                                 <%= b.getName() %>
