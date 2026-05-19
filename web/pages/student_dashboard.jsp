@@ -226,6 +226,16 @@
                                                                 <% } %>
                                                         </div>
                                                         <div class="table-wrap">
+                                                        <div style="margin-bottom:16px;display:flex;gap:10px;flex-wrap:wrap;">
+                                                            <input type="text" id="searchInput" placeholder="Search by title or author..." onkeyup="filterBooks()" style="padding:8px 12px;border:1px solid #ddd;border-radius:6px;width:300px;font-size:13px;">
+                                                            <select id="categoryFilter" onchange="filterBooks()" style="padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-size:13px;">
+                                                                <option value="">All Categories</option>
+                                                                <option>Engineering &amp; Technology</option>
+                                                                <option>Science</option>
+                                                                <option>Mathematics</option>
+                                                                <option>Filipino</option>
+                                                            </select>
+                                                        </div>
                                                             <table class="data-table">
                                                                 <thead>
                                                                     <tr>
