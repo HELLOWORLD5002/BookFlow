@@ -285,8 +285,8 @@
 
 
 
-                                                                                                <%= b.getStock()==0
-                                                                                                    ? "No Stock"
+
+
                                                                                                     : "Max Reached" %>
                                                                                             </button>
                                                                                             <% } %>
