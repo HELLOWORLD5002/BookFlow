@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ page import="java.util.List, models.*" %>
         <% String studentName=(String) session.getAttribute("studentName"); String studentNumber=(String)
             session.getAttribute("studentNumber"); if (studentName==null) {
@@ -274,13 +274,13 @@
                                                                                         3) { %>
                                                                                         <form
                                                                                             action="<%= request.getContextPath() %>/borrow"
-                                                                                            method="post"
-                                                                                            style="display:inline">
-                                                                                            <input type="hidden"
-                                                                                                name="bookId"
-                                                                                                value="<%= b.getId() %>">
-                                                                                            <button type="submit"
-                                                                                                class="btn-sm-green">Borrow</button>
+                                                                                        <button type="button" class="btn-sm-green" onclick="openBorrowModal(<%= b.getId() %>, `'<%= b.getName().replace("'","") %>`')">Borrow</button>
+                                                                                        <form id="borrowForm-<%= b.getId() %>" action="<%= request.getContextPath() %>/borrow" method="post" style="display:none"><input type="hidden" name="bookId" value="<%= b.getId() %>"><input type="hidden" name="days" id="borrowDays-<%= b.getId() %>" value="7"></form>
+
+
+
+
+
                                                                                         </form>
                                                                                         <% } else { %>
                                                                                             <button class="btn-sm-gray"
@@ -308,6 +308,59 @@
                                                         el.classList.add('active');
                                                     }
                                                 </script>
-                                            <script>function filterBooks(){var search=document.getElementById("searchInput").value.toLowerCase();var cat=document.getElementById("categoryFilter").value.toLowerCase();var rows=document.querySelectorAll("#bookTable tr");rows.forEach(function(row){var title=row.cells[1]?row.cells[1].textContent.toLowerCase():"";var author=row.cells[2]?row.cells[2].textContent.toLowerCase():"";var category=row.cells[3]?row.cells[3].textContent.toLowerCase():"";var matchSearch=title.includes(search)||author.includes(search);var matchCat=cat===""||category.includes(cat);row.style.display=matchSearch&&matchCat?"":"none";});}</script></body>
+                                            <script>function filterBooks(){var search=document.getElementById("searchInput").value.toLowerCase();var cat=document.getElementById("categoryFilter").value.toLowerCase();var rows=document.querySelectorAll("#bookTable tr");rows.forEach(function(row){var title=row.cells[1]?row.cells[1].textContent.toLowerCase():"";var author=row.cells[2]?row.cells[2].textContent.toLowerCase():"";var category=row.cells[3]?row.cells[3].textContent.toLowerCase():"";var matchSearch=title.includes(search)||author.includes(search);var matchCat=cat===""||category.includes(cat);row.style.display=matchSearch&&matchCat?"":"none";});}</script>
+<!-- Borrow Modal -->
+<div id="borrowModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;justify-content:center;align-items:center;">
+  <div style="background:white;border-radius:12px;padding:32px;width:360px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+    <h3 style="margin-bottom:8px;color:#122146;">Borrow Book</h3>
+    <p id="modalBookTitle" style="color:#666;font-size:14px;margin-bottom:20px;"></p>
+    <p style="font-weight:600;margin-bottom:12px;color:#333;">How many days do you need?</p>
+    <div style="display:flex;gap:10px;margin-bottom:24px;">
+      <button onclick="selectDays(3)" id="btn3" class="day-btn" style="flex:1;padding:12px;border:2px solid #ddd;border-radius:8px;cursor:pointer;font-size:16px;font-weight:700;background:white;">3 days</button>
+      <button onclick="selectDays(5)" id="btn5" class="day-btn" style="flex:1;padding:12px;border:2px solid #ddd;border-radius:8px;cursor:pointer;font-size:16px;font-weight:700;background:white;">5 days</button>
+      <button onclick="selectDays(7)" id="btn7" class="day-btn" style="flex:1;padding:12px;border:2px solid #2E7D32;border-radius:8px;cursor:pointer;font-size:16px;font-weight:700;background:#e8f5e9;color:#2E7D32;">7 days</button>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button onclick="closeBorrowModal()" style="flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;cursor:pointer;background:white;font-size:14px;">Cancel</button>
+      <button onclick="confirmBorrow()" style="flex:1;padding:10px;border:none;border-radius:6px;cursor:pointer;background:#2E7D32;color:white;font-size:14px;font-weight:600;">Confirm Borrow</button>
+    </div>
+  </div>
+</div>
+<script>
+var currentBookId = null;
+var selectedDays = 7;
+function openBorrowModal(bookId, bookTitle) {
+  currentBookId = bookId;
+  selectedDays = 7;
+  document.getElementById('modalBookTitle').textContent = bookTitle;
+  document.getElementById('borrowModal').style.display = 'flex';
+  selectDays(7);
+}
+function selectDays(days) {
+  selectedDays = days;
+  [3,5,7].forEach(function(d) {
+    var btn = document.getElementById('btn'+d);
+    if(d === days) {
+      btn.style.border = '2px solid #2E7D32';
+      btn.style.background = '#e8f5e9';
+      btn.style.color = '#2E7D32';
+    } else {
+      btn.style.border = '2px solid #ddd';
+      btn.style.background = 'white';
+      btn.style.color = '#333';
+    }
+  });
+}
+function closeBorrowModal() {
+  document.getElementById('borrowModal').style.display = 'none';
+  currentBookId = null;
+}
+function confirmBorrow() {
+  if(currentBookId) {
+    document.getElementById('borrowDays-'+currentBookId).value = selectedDays;
+    document.getElementById('borrowForm-'+currentBookId).submit();
+  }
+}
+</script></body>
 
                                             </html>

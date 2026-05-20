@@ -49,7 +49,7 @@ public class BorrowServlet extends HttpServlet {
         t.setBookName(book.getName());
         t.setAuthor(book.getAuthor());
         t.setBorrowDate(LocalDate.now());
-        t.setExpectedReturn(LocalDate.now().plusDays(7));
+        int days = 7; try { days = Integer.parseInt(request.getParameter("days")); } catch(Exception e) {} t.setExpectedReturn(LocalDate.now().plusDays(days));
         t.setReturned(false);
 
         txDAO.insert(t);
