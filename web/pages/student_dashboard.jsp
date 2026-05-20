@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ page import="java.util.List, models.*" %>
         <% String studentName=(String) session.getAttribute("studentName"); String studentNumber=(String)
             session.getAttribute("studentNumber"); if (studentName==null) {
@@ -275,7 +275,7 @@
                                                                                         <form
                                                                                             action="<%= request.getContextPath() %>/borrow"
                                                                                         <button type="button" class="btn-sm-green" onclick="openBorrowModal(<%= b.getId() %>, this.getAttribute('data-title'))" data-title="<%= b.getName() %>">Borrow</button>
-                                                                                        <form id="borrowForm-<%= b.getId() %>" action="<%= request.getContextPath() %>/borrow" method="post" style="display:none"><input type="hidden" name="bookId" value="<%= b.getId() %>"><input type="hidden" name="days" id="borrowDays-<%= b.getId() %>" value="7"></form>
+
 
 
 
@@ -309,7 +309,7 @@
                                                     }
                                                 </script>
                                             <script>function filterBooks(){var search=document.getElementById("searchInput").value.toLowerCase();var cat=document.getElementById("categoryFilter").value.toLowerCase();var rows=document.querySelectorAll("#bookTable tr");rows.forEach(function(row){var title=row.cells[1]?row.cells[1].textContent.toLowerCase():"";var author=row.cells[2]?row.cells[2].textContent.toLowerCase():"";var category=row.cells[3]?row.cells[3].textContent.toLowerCase():"";var matchSearch=title.includes(search)||author.includes(search);var matchCat=cat===""||category.includes(cat);row.style.display=matchSearch&&matchCat?"":"none";});}</script>
-<!-- Borrow Modal -->
+<form id="globalBorrowForm" action="BookFlow/borrow" method="post" style="display:none"><input type="hidden" name="bookId" id="globalBookId" value=""><input type="hidden" name="days" id="globalDays" value="7"></form><!-- Borrow Modal -->
 <div id="borrowModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;justify-content:center;align-items:center;">
   <div style="background:white;border-radius:12px;padding:32px;width:360px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
     <h3 style="margin-bottom:8px;color:#122146;">Borrow Book</h3>
@@ -355,7 +355,7 @@ function closeBorrowModal() {
   document.getElementById('borrowModal').style.display = 'none';
   currentBookId = null;
 }
-function confirmBorrow() {
+function confirmBorrow() { var f=document.getElementById("globalBorrowForm"); var bid=document.getElementById("globalBookId"); var d=document.getElementById("globalDays"); if(f&&bid&&d){bid.value=currentBookId;d.value=selectedDays;f.submit();} //
   if(currentBookId) {
     var daysInput = document.getElementById("borrowDays-"+currentBookId);
     var form = document.getElementById("borrowForm-"+currentBookId);
