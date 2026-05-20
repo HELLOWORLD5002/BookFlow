@@ -357,10 +357,10 @@ function closeBorrowModal() {
 }
 function confirmBorrow() {
   if(currentBookId) {
-    document.getElementById("borrowDays-"+currentBookId).value = selectedDays;
-    document.getElementById("borrowForm-"+currentBookId).submit();
+    var daysInput = document.getElementById("borrowDays-"+currentBookId);
+    var form = document.getElementById("borrowForm-"+currentBookId);
+    console.log("bookId:"+currentBookId+" days:"+selectedDays+" form:"+form+" input:"+daysInput);
+    if(daysInput) daysInput.value = selectedDays;
+    if(form) form.submit();
   }
 }
-</script></body>
-</html>
-
