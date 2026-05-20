@@ -278,7 +278,6 @@
                                                                             </td>
                                                                         </tr>
                                                                         <% } %>
-                                                                </tbody>
 
 
 
@@ -287,12 +286,13 @@
 
 
 
-                                                                                                    : "Max Reached" %>
-                                                                                            </button>
-                                                                                            <% } %>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <% } %>
+
+
+
+
+
+
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
