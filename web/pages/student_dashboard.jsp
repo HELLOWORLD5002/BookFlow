@@ -281,10 +281,10 @@
 
 
 
-                                                                                        </form>
-                                                                                        <% } else { %>
-                                                                                            <button class="btn-sm-gray"
-                                                                                                disabled>
+
+
+
+
                                                                                                 <%= b.getStock()==0
                                                                                                     ? "No Stock"
                                                                                                     : "Max Reached" %>
