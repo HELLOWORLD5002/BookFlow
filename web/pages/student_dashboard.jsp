@@ -270,12 +270,12 @@
                                                                                     b.getPrice()) %>
                                                                             </td>
                                                                             <td>
-                                                                                <% if (b.getStock()> 0 && activeCount <
-                                                                                        3) { %>
-                                                                                        <form
-                                                                                            action="<%= request.getContextPath() %>/borrow"
-                                                                                        <button type="button" class="btn-sm-green" onclick="openBorrowModal(<%= b.getId() %>, this.getAttribute('data-title'))" data-title="<%= b.getName() %>">Borrow</button>
-
+                                                                                <% if (b.getStock()> 0 && activeCount < 3) { %>
+                                                                                    <button type="button" class="btn-sm-green" onclick="openBorrowModal(<%= b.getId() %>, this.getAttribute('data-title'))" data-title="<%= b.getName() %>">Borrow</button>
+                                                                                <% } else { %>
+                                                                                    <button class="btn-sm-gray" disabled><%= b.getStock()==0 ? "No Stock" : "Max Reached" %></button>
+                                                                                <% } %>
+                                                                            </td>
 
 
 
@@ -309,7 +309,7 @@
                                                     }
                                                 </script>
                                             <script>function filterBooks(){var search=document.getElementById("searchInput").value.toLowerCase();var cat=document.getElementById("categoryFilter").value.toLowerCase();var rows=document.querySelectorAll("#bookTable tr");rows.forEach(function(row){var title=row.cells[1]?row.cells[1].textContent.toLowerCase():"";var author=row.cells[2]?row.cells[2].textContent.toLowerCase():"";var category=row.cells[3]?row.cells[3].textContent.toLowerCase():"";var matchSearch=title.includes(search)||author.includes(search);var matchCat=cat===""||category.includes(cat);row.style.display=matchSearch&&matchCat?"":"none";});}</script>
-<form id="globalBorrowForm" action="BookFlow/borrow" method="post" style="display:none"><input type="hidden" name="bookId" id="globalBookId" value=""><input type="hidden" name="days" id="globalDays" value="7"></form><!-- Borrow Modal -->
+<form id="globalBorrowForm" action="borrow" method="post" style="display:none"><input type="hidden" name="bookId" id="globalBookId" value=""><input type="hidden" name="days" id="globalDays" value="7"></form><!-- Borrow Modal -->
 <div id="borrowModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;justify-content:center;align-items:center;">
   <div style="background:white;border-radius:12px;padding:32px;width:360px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
     <h3 style="margin-bottom:8px;color:#122146;">Borrow Book</h3>
