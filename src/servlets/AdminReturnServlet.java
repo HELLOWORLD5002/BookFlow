@@ -17,8 +17,8 @@ public class AdminReturnServlet extends HttpServlet {
             txDAO.markReturned(transactionId);
             double fine = 0;
             String reason = "";
-            if (type.equals("damaged")) { fine = 200.0; reason = "Damaged Book"; }
-            else if (type.equals("lost")) { fine = 500.0; reason = "Lost Book"; }
+            if ("damaged".equals(type)) { fine = 200.0; reason = "Damaged Book"; }
+            else if ("lost".equals(type)) { fine = 500.0; reason = "Lost Book"; }
             else { fine = t.computeOverdueFine(); reason = "Overdue Fine"; }
             if (fine > 0) {
                 Penalty p = new Penalty(t.getStudentName(), t.getStudentNumber(), t.getBookName(), reason, fine);
