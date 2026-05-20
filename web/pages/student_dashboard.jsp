@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ page import="java.util.List, models.*" %>
         <% String studentName=(String) session.getAttribute("studentName"); String studentNumber=(String)
             session.getAttribute("studentNumber"); if (studentName==null) {
@@ -355,12 +355,12 @@ function closeBorrowModal() {
   document.getElementById('borrowModal').style.display = 'none';
   currentBookId = null;
 }
-function confirmBorrow() { var f=document.getElementById("globalBorrowForm"); var bid=document.getElementById("globalBookId"); var d=document.getElementById("globalDays"); if(f&&bid&&d){bid.value=currentBookId;d.value=selectedDays;f.submit();} //
-  if(currentBookId) {
-    var daysInput = document.getElementById("borrowDays-"+currentBookId);
-    var form = document.getElementById("borrowForm-"+currentBookId);
-    console.log("bookId:"+currentBookId+" days:"+selectedDays+" form:"+form+" input:"+daysInput);
-    if(daysInput) daysInput.value = selectedDays;
-    if(form) form.submit();
+function confirmBorrow() {
+  var f=document.getElementById("globalBorrowForm");
+  var bid=document.getElementById("globalBookId");
+  var d=document.getElementById("globalDays");
+  if(f&&bid&&d){bid.value=currentBookId;d.value=selectedDays;f.submit();}
+}
+</script>
   }
 }
