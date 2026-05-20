@@ -362,7 +362,10 @@ function confirmBorrow() {
   if(f&&bid&&d){bid.value=currentBookId;d.value=selectedDays;f.submit();}
 }
 </script>
-  }
-}
-< ! - -   u p d a t e d   2 0 2 6 0 5 2 0 1 7 2 3 4 7   - - >  
- 
+
+
+
+
+
+</body>
+</html>
