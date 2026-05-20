@@ -357,10 +357,10 @@ function closeBorrowModal() {
 }
 function confirmBorrow() {
   if(currentBookId) {
-    document.getElementById('borrowDays-'+currentBookId).value = selectedDays;
+    document.getElementById("borrowDays-"+currentBookId).value = selectedDays;
+    document.getElementById("borrowForm-"+currentBookId).submit();
+  }
 }
 </script></body>
 </html>
-</script></body>
 
-                                            </html>
