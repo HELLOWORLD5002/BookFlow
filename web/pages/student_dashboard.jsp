@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ page import="java.util.List, models.*" %>
         <% String studentName=(String) session.getAttribute("studentName"); String studentNumber=(String)
             session.getAttribute("studentNumber"); if (studentName==null) {
@@ -274,7 +274,7 @@
                                                                                         3) { %>
                                                                                         <form
                                                                                             action="<%= request.getContextPath() %>/borrow"
-                                                                                        <button type="button" class="btn-sm-green" onclick="openBorrowModal(<%= b.getId() %>, `'<%= b.getName().replace("'","") %>`')">Borrow</button>
+                                                                                        <button type="button" class="btn-sm-green" onclick="openBorrowModal(<%= b.getId() %>, this.getAttribute('data-title'))" data-title="<%= b.getName() %>">Borrow</button>
                                                                                         <form id="borrowForm-<%= b.getId() %>" action="<%= request.getContextPath() %>/borrow" method="post" style="display:none"><input type="hidden" name="bookId" value="<%= b.getId() %>"><input type="hidden" name="days" id="borrowDays-<%= b.getId() %>" value="7"></form>
 
 
