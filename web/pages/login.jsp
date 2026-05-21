@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html>
 
@@ -48,11 +48,11 @@
 
                                     <div class="form-group">
                                         <label><span id="loginLabel">Student Number / Username</span></label>
-                                        <input type="text" name="username" placeholder="e.g. 2021-12345" required>
+                                        <input type="text" name="username" placeholder="e.g. 2024-123456" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" name="password" placeholder="Enter your password"
+                                    <div style="position:relative;"><input type="password" name="password" id="passwordInput" placeholder="Enter your password" style="padding-right:40px;" required><span onclick="togglePassword()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:16px;" id="eyeIcon">&#128065;</span></div>
                                             required>
                                     </div>
                                     <button type="submit" class="btn-login">Sign In</button>
