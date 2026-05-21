@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html>
 
@@ -93,6 +93,6 @@
                 </div>
             </div>
         </div>
-    <script>document.querySelector("select[name=program]").addEventListener("change",function(){var d=document.getElementById("otherProgramDiv");var i=document.getElementById("otherProgramInput");if(this.value==="Other (please specify)"){d.style.display="block";i.required=true;}else{d.style.display="none";i.required=false;}});</script></body>
+    <script>document.querySelector("select[name=program]").addEventListener("change",function(){var d=document.getElementById("otherProgramDiv");var i=document.getElementById("otherProgramInput");if(this.value==="Other"){d.style.display="block";i.required=true;}else{d.style.display="none";i.required=false;}});</script></body>
 
     </html>
