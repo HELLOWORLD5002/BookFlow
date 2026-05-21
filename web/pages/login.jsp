@@ -53,7 +53,7 @@
                                     <div class="form-group">
                                         <label>Password</label>
                                     <div style="position:relative;"><input type="password" name="password" id="passwordInput" placeholder="Enter your password" style="padding-right:40px;" required><span onclick="togglePassword()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:16px;" id="eyeIcon">&#128065;</span></div>
-                                            required>
+
                                     </div>
                                     <button type="submit" class="btn-login">Sign In</button>
                                 </form>

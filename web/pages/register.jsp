@@ -50,7 +50,7 @@
                                                 <div class="form-group">
                                                     <label>Student Number</label>
                                                     <input type="text" name="studentNumber"
-                                                        placeholder="e.g. 2021-12345" required>
+                                                        placeholder="e.g. 2024-123456" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email</label>
@@ -75,9 +75,9 @@
                                                         <option value="BS Civil Engineering">BS Civil Engineering
                                                         </option>
                                                         <option value="Other">Other</option>
+                                                        <option value="Other">Other (please specify)</option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group">
+                                                    <div id="otherProgramDiv" style="display:none;margin-top:8px;"><input type="text" name="otherProgram" id="otherProgramInput" placeholder="e.g. BS Architecture" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;"></div>
                                                     <label>Password</label>
                                                     <input type="password" name="password"
                                                         placeholder="Create a password" required>
