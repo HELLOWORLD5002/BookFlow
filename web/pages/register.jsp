@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html>
 
@@ -74,7 +74,7 @@
                                                             Engineering</option>
                                                         <option value="BS Civil Engineering">BS Civil Engineering
                                                         </option>
-                                                        <option value="Other">Other</option>
+
                                                         <option value="Other">Other (please specify)</option>
                                                     </select>
                                                     <div id="otherProgramDiv" style="display:none;margin-top:8px;"><input type="text" name="otherProgram" id="otherProgramInput" placeholder="e.g. BS Architecture" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;"></div>
@@ -93,6 +93,6 @@
                 </div>
             </div>
         </div>
-    </body>
+    <script>document.querySelector("select[name=program]").addEventListener("change",function(){var d=document.getElementById("otherProgramDiv");var i=document.getElementById("otherProgramInput");if(this.value==="Other (please specify)"){d.style.display="block";i.required=true;}else{d.style.display="none";i.required=false;}});</script></body>
 
     </html>
