@@ -72,7 +72,8 @@
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                 event.target.classList.add('active');
             }
-        </script>
+        function togglePassword(){var x=document.getElementById("passwordInput");var e=document.getElementById("eyeIcon");if(x.type==="password"){x.type="text";e.textContent="🙈";}else{x.type="password";e.textContent="👁";}}
+</script>
     </body>
 
     </html>
